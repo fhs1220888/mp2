@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { getPokemonByName, getPokemonList, officialArt } from "../api/api";
 import type { Pokemon } from "../api/api";
 import styles from "../styles/DetailPage.module.css";
+import btn from "../styles/Button.module.css";
 
 const DetailPage: React.FC = () => {
     const { name = "" } = useParams();
@@ -102,10 +103,12 @@ const DetailPage: React.FC = () => {
 
                     {/* prev / next by id order */}
                     <div className={styles.nav}>
-                        <button disabled={!prevNext.prev} onClick={() => prevNext.prev && nav(`/pokemon/${prevNext.prev}`)}>
+                        <button className={`${btn.btn} ${btn.ghost}`} disabled={!prevNext.prev}
+                                onClick={() => prevNext.prev && nav(`/pokemon/${prevNext.prev}`)}>
                             ← Prev
                         </button>
-                        <button disabled={!prevNext.next} onClick={() => prevNext.next && nav(`/pokemon/${prevNext.next}`)}>
+                        <button className={btn.btn} disabled={!prevNext.next}
+                                onClick={() => prevNext.next && nav(`/pokemon/${prevNext.next}`)}>
                             Next →
                         </button>
                     </div>

@@ -1,20 +1,19 @@
-.container {
-    padding: 20px;
-}
+.container { padding: 8px 0; }
+
+.header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; }
 
 .filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    position: sticky; top: 8px; z-index: 5;
+    background: var(--bg); padding: 8px 0;
+    border-bottom: 1px solid var(--border);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-    margin-top: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px; margin-top: 14px;
 }
 
-.loading {
-    margin-top: 12px;
-}
+.loading { margin-top: 12px; color: var(--muted); }
+
+.empty { color: var(--muted); margin-top: 10px; }

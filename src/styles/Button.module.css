@@ -1,0 +1,21 @@
+.btn {
+    appearance: none;
+    background: var(--brand);
+    color: #fff;
+    border: 1px solid var(--brand);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .12s ease, opacity .12s ease;
+    box-shadow: 0 2px 10px rgba(37,99,235,.2);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:disabled {
+    opacity: .45; cursor: not-allowed;
+    box-shadow: none; transform:none;
+}
+.ghost {
+    background: transparent; color: var(--brand);
+    border-color: var(--brand);
+}

@@ -4,6 +4,7 @@ import { getPokemonList, getPokemonByName, getAllTypes } from "../api/api";
 import type { Pokemon } from "../api/api";
 import PokemonCard from "../components/PokemonCard";
 import TypeFilters from "../components/TypeFilters";
+import Skeleton from "../components/Skeleton";
 import styles from "../styles/GalleryPage.module.css";
 
 const GalleryPage: React.FC = () => {
@@ -19,7 +20,7 @@ const GalleryPage: React.FC = () => {
         (async () => {
             setLoading(true);
             try {
-                const [list, t] = await Promise.all([getPokemonList(60, 0), getAllTypes()]);
+                const [list, t] = await Promise.all([getPokemonList(150, 0), getAllTypes()]);
                 const detailed = await Promise.all(list.map((p) => getPokemonByName(p.name)));
                 if (!cancelled) {
                     setItems(detailed);
@@ -45,21 +46,26 @@ const GalleryPage: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <h2>Gallery</h2>
+            <div className={styles.header}><h2>Gallery</h2></div>
 
-            {/* filters */}
             <div className={styles.filters}>
                 <TypeFilters all={types} selected={selected} onChange={setSelected} />
             </div>
 
-            {loading && <div className={styles.loading}>Loading...</div>}
+            {loading && (
+                <div className={styles.grid}>
+                    {Array.from({ length: 12 }).map((_, i) => <Skeleton key={i} />)}
+                </div>
+            )}
 
-            {/* grid */}
-            <div className={styles.grid}>
-                {visible.map((p) => (
-                    <PokemonCard key={p.name} p={p} />
-                ))}
-            </div>
+            {!loading && (
+                <>
+                    <div className={styles.grid}>
+                        {visible.map((p) => <PokemonCard key={p.name} p={p} />)}
+                    </div>
+                    {visible.length === 0 && <div className={styles.empty}>No results</div>}
+                </>
+            )}
         </div>
     );
 };

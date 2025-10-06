@@ -54,6 +54,8 @@ const ListPage: React.FC = () => {
                     </li>
                 ))}
             </ul>
+            {filtered.length === 0 && <div>No results</div>}
+
         </div>
     );
 };
