@@ -1,6 +1,5 @@
 // src/pages/GalleryPage.tsx
 import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { getPokemonList, getPokemonByName, getAllTypes, officialArt } from "../api/api";
 import type { Pokemon } from "../api/api";
 import PokemonCard from "../components/PokemonCard";
