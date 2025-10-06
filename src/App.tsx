@@ -1,5 +1,8 @@
 import React from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import ListPage from "./pages/ListPage";
+import GalleryPage from "./pages/GalleryPage";
+import DetailPage from "./pages/DetailPage";
 import './App.css';
 
 function App() {
@@ -10,12 +13,19 @@ function App() {
           <Link to="/gallery">Gallery</Link>
         </nav>
 
-        <Routes>
-          <Route path="/" element={<Navigate to="/list" />} />
-          <Route path="/list" element={<div>List Page (todo)</div>} />
-          <Route path="/gallery" element={<div>Gallery Page (todo)</div>} />
-          <Route path="*" element={<div>Not Found</div>} />
-        </Routes>
+          {/* router config */}
+          <Routes>
+              {/* default redirect */}
+              <Route path="/" element={<Navigate to="/list" />} />
+              {/* list view */}
+              <Route path="/list" element={<ListPage />} />
+              {/* gallery view */}
+              <Route path="/gallery" element={<GalleryPage />} />
+              {/* detail view with param */}
+              <Route path="/pokemon/:name" element={<DetailPage />} />
+              {/* 404 */}
+              <Route path="*" element={<div style={{ padding: 20 }}>Not Found</div>} />
+          </Routes>
       </div>
   );
 }
