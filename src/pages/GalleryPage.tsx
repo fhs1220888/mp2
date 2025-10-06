@@ -1,6 +1,6 @@
 // src/pages/GalleryPage.tsx
 import React, { useEffect, useMemo, useState } from "react";
-import { getPokemonList, getPokemonByName, getAllTypes, officialArt } from "../api/api";
+import { getPokemonList, getPokemonByName, getAllTypes } from "../api/api";
 import type { Pokemon } from "../api/api";
 import PokemonCard from "../components/PokemonCard";
 import TypeFilters from "../components/TypeFilters";
