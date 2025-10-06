@@ -1,5 +1,6 @@
 // Choose sort key and direction
 import React from "react";
+import styles from "../styles/SortControls.module.css";
 
 type SortKey = "id" | "name";
 type SortDir = "asc" | "desc";
@@ -13,7 +14,7 @@ type Props = {
 
 const SortControls: React.FC<Props> = ({ sortBy, setSortBy, order, setOrder }) => {
     return (
-        <div style={{ display: "inline-flex", gap: 8 }}>
+        <div className={styles.wrap}>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value as SortKey)}>
                 <option value="id">ID</option>
                 <option value="name">Name</option>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getPokemonList } from "../api/api";
 import SearchBar from "../components/SearchBar";
 import SortControls from "../components/SortControls";
+import styles from "../styles/ListPage.module.css";
 
 type Pokemon = { id: number; name: string; url: string };
 
@@ -14,7 +15,7 @@ const ListPage: React.FC = () => {
     const [sortBy, setSortBy] = useState<"id" | "name">("id");
     const [order, setOrder] = useState<"asc" | "desc">("asc");
 
-    // load 200 entries
+    // load data
     useEffect(() => {
         getPokemonList(200, 0).then((res) => setPokemons(res));
     }, []);
@@ -34,26 +35,20 @@ const ListPage: React.FC = () => {
     }, [pokemons, search, sortBy, order]);
 
     return (
-        <div style={{ padding: 20 }}>
+        <div className={styles.container}>
             <h2>Pokémon List</h2>
 
             {/* search + sort */}
-            <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+            <div className={styles.toolbar}>
                 <SearchBar value={search} onChange={setSearch} placeholder="Search by name..." />
-                <SortControls
-                    sortBy={sortBy}
-                    setSortBy={setSortBy}
-                    order={order}
-                    setOrder={setOrder}
-                />
+                <SortControls sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder} />
             </div>
 
             {/* results */}
-            <ul style={{ listStyle: "none", paddingLeft: 0, marginTop: 16 }}>
+            <ul className={styles.list}>
                 {filtered.map((p) => (
-                    <li key={p.id} style={{ padding: "6px 0", borderBottom: "1px solid #eee", textAlign: "left" }}>
-                        {/* make each item clickable to detail route */}
-                        <Link to={`/pokemon/${p.name}`} style={{ textDecoration: "none" }}>
+                    <li key={p.id} className={styles.item}>
+                        <Link to={`/pokemon/${p.name}`} className={styles.link}>
                             #{p.id} — {p.name}
                         </Link>
                     </li>

@@ -1,0 +1,11 @@
+.wrap {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    border: 1px solid #eee;
+    padding: 4px 8px;
+    border-radius: 8px;
+}

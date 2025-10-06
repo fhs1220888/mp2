@@ -1,0 +1,39 @@
+.container {
+    padding: 20px;
+}
+
+.back {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.img {
+    width: 100%;
+    max-width: 360px;
+    object-fit: contain;
+}
+
+.title {
+    margin: 0 0 8px 0;
+}
+
+.meta {
+    margin: 8px 0;
+}
+
+.stats {
+    margin: 8px 0;
+    padding-left: 18px;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}

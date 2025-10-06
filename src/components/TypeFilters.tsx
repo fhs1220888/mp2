@@ -1,5 +1,6 @@
 // Multi-select checkboxes
 import React from "react";
+import styles from "../styles/TypeFilters.module.css";
 
 type Props = {
     all: string[];
@@ -13,9 +14,9 @@ const TypeFilters: React.FC<Props> = ({ all, selected, onChange }) => {
     };
 
     return (
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <div className={styles.wrap}>
             {all.map((t) => (
-                <label key={t} style={{ border: "1px solid #eee", padding: "4px 8px", borderRadius: 8 }}>
+                <label key={t} className={styles.badge}>
                     <input type="checkbox" checked={selected.includes(t)} onChange={() => toggle(t)} /> {t}
                 </label>
             ))}

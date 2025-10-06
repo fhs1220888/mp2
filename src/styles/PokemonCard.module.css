@@ -1,0 +1,27 @@
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.title {
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.meta {
+    font-size: 12px;
+    opacity: 0.8;
+}

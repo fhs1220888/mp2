@@ -1,5 +1,6 @@
 // Simple controlled input
 import React from "react";
+import styles from "../styles/SearchBar.module.css";
 
 type Props = {
     value: string;
@@ -10,10 +11,10 @@ type Props = {
 const SearchBar: React.FC<Props> = ({ value, onChange, placeholder }) => {
     return (
         <input
+            className={styles.input}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder || "Search..."}
-            style={{ padding: 8 }}
         />
     );
 };

@@ -3,6 +3,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPokemonList, getPokemonByName, getAllTypes, officialArt } from "../api/api";
 import type { Pokemon } from "../api/api";
+import PokemonCard from "../components/PokemonCard";
+import TypeFilters from "../components/TypeFilters";
+import styles from "../styles/GalleryPage.module.css";
 
 const GalleryPage: React.FC = () => {
     // data state
@@ -41,62 +44,21 @@ const GalleryPage: React.FC = () => {
         });
     }, [items, selected]);
 
-    // toggle a type
-    const toggle = (t: string) => {
-        setSelected((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
-    };
-
     return (
-        <div style={{ padding: 20 }}>
+        <div className={styles.container}>
             <h2>Gallery</h2>
 
             {/* filters */}
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {types.map((t) => (
-                    <label key={t} style={{ border: "1px solid #eee", padding: "4px 8px", borderRadius: 8 }}>
-                        <input type="checkbox" checked={selected.includes(t)} onChange={() => toggle(t)} /> {t}
-                    </label>
-                ))}
+            <div className={styles.filters}>
+                <TypeFilters all={types} selected={selected} onChange={setSelected} />
             </div>
 
-            {loading && <div style={{ marginTop: 12 }}>Loading...</div>}
+            {loading && <div className={styles.loading}>Loading...</div>}
 
             {/* grid */}
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
-                    gap: 16,
-                    marginTop: 16,
-                }}
-            >
+            <div className={styles.grid}>
                 {visible.map((p) => (
-                    <Link
-                        key={p.name}
-                        to={`/pokemon/${p.name}`}
-                        style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                        <div
-                            style={{
-                                border: "1px solid #eee",
-                                borderRadius: 12,
-                                padding: 10,
-                                textAlign: "center",
-                            }}
-                        >
-                            <img
-                                alt={p.name}
-                                src={officialArt(p)}
-                                style={{ width: 120, height: 120, objectFit: "contain" }}
-                            />
-                            <div style={{ marginTop: 6, fontWeight: 600 }}>
-                                #{p.id} {p.name}
-                            </div>
-                            <div style={{ fontSize: 12, opacity: 0.8 }}>
-                                {p.types.map((t) => t.type.name).join(", ")}
-                            </div>
-                        </div>
-                    </Link>
+                    <PokemonCard key={p.name} p={p} />
                 ))}
             </div>
         </div>
