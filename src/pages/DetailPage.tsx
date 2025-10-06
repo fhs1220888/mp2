@@ -64,8 +64,13 @@ const DetailPage: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.back}>
-                <Link to="/list">← Back to List</Link>
+            <div className={styles.navButtons}>
+                <Link to="/list" className={`${btn.btn} ${btn.ghost}`}>
+                    ← Back to List
+                </Link>
+                <Link to="/gallery" className={btn.btn}>
+                    ← Back to Gallery
+                </Link>
             </div>
 
             <div className={styles.layout}>
